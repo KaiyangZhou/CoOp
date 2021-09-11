@@ -1,7 +1,8 @@
 # CoOp
 
-Paper: [Learning to Prompt for Vision-Language Models](https://arxiv.org/abs/2109.01134)
-Authors: [Kaiyang Zhou](https://kaiyangzhou.github.io/), [Jingkang Yang](https://jingkang50.github.io/), [Chen Change Loy](https://www.mmlab-ntu.com/person/ccloy/index.html), [Ziwei Liu](https://liuziwei7.github.io/)
+[Learning to Prompt for Vision-Language Models](https://arxiv.org/abs/2109.01134)
+
+[Kaiyang Zhou](https://kaiyangzhou.github.io/), [Jingkang Yang](https://jingkang50.github.io/), [Chen Change Loy](https://www.mmlab-ntu.com/person/ccloy/index.html), [Ziwei Liu](https://liuziwei7.github.io/)
 
 CoOp (Context Optimization) is a differentiable approach that focuses on continuous prompt learning to facilitate deployment of pre-trained vision language models (like [CLIP](https://arxiv.org/abs/2103.00020)) in downstream datasets.
 
