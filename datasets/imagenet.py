@@ -4,8 +4,6 @@ from collections import OrderedDict
 from dassl.data.datasets import DATASET_REGISTRY, Datum, DatasetBase
 from dassl.utils import listdir_nohidden
 
-from .oxford_pets import OxfordPets
-
 TO_BE_IGNORED = ['new_val_prep.sh', 'train1.txt', 'train.txt']
 
 
