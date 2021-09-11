@@ -6,7 +6,7 @@ Authors: [Kaiyang Zhou](https://kaiyangzhou.github.io/), [Jingkang Yang](https:/
 CoOp (Context Optimization) is a differentiable approach that focuses on continuous prompt learning to facilitate deployment of pre-trained vision language models (like [CLIP](https://arxiv.org/abs/2103.00020)) in downstream datasets.
 
 <div align="center">
-  <img src="https://drive.google.com/uc?export=view&id=1sQYVV6-haWvo8p4ACC4JxLtZHvGQeEAW" width="500px" />
+  <img src="https://drive.google.com/uc?export=view&id=1sQYVV6-haWvo8p4ACC4JxLtZHvGQeEAW" width="900px" />
 </div>
 
 ## How to Install
