@@ -1,14 +1,15 @@
 # How to install datasets
 
 We suggest putting all datasets under the same folder (say `$DATA`) to ease management and following the instructions below to organize datasets to avoid modifying the source code. The file structure looks like
+
 ```bash
 $DATA/
-    imagenet/
-    caltech-101/
-    oxford_pets/
-    stanford_cars/
-    ...
+|–– imagenet/
+|–– caltech-101/
+|–– oxford_pets/
+|__ stanford_cars/
 ```
+
 If you have some datasets already installed somewhere else, you can create symbolic links in `$DATA/dataset_name` that point to the original data to avoid duplicate download.
 
 Datasets list:
@@ -36,9 +37,9 @@ The instructions to prepare each dataset are detailed below. To ensure reproduci
 - Download the dataset from the [official website](https://image-net.org/index.php) and extract the training and validation sets to `$DATA/imagenet/images`. The directory structure should look like
 ```bash
 imagenet/
-    images/
-        train/ # contains 1,000 folders like n01440764, n01443537, etc.
-        val/
+|–– images/
+|   |–– train/ # contains 1,000 folders like n01440764, n01443537, etc.
+|   |__ val/
 ```
 - If you had downloaded the ImageNet dataset before, you can create symbolic links to map the training and validation sets to `$DATA/imagenet/images`.
 - Download the `classnames.txt` to `$DATA/imagenet/` from this [link](https://drive.google.com/file/d/1-61f_ol79pViBFDG_IDlUQSwoLcn2XXF/view?usp=sharing). The class names are copied from [CLIP](https://github.com/openai/CLIP/blob/main/notebooks/Prompt_Engineering_for_ImageNet.ipynb).
@@ -51,8 +52,8 @@ imagenet/
 The directory structure should look like
 ```bash
 caltech-101/
-    101_ObjectCategories/
-    split_zhou_Caltech101.json
+|–– 101_ObjectCategories/
+|__ split_zhou_Caltech101.json
 ```
 
 ### OxfordPets
@@ -64,9 +65,9 @@ caltech-101/
 The directory structure should look like
 ```bash
 oxford_pets/
-    images/
-    annotations/
-    split_zhou_OxfordPets.json
+|–– images/
+|–– annotations/
+|__ split_zhou_OxfordPets.json
 ```
 
 ### StanfordCars
@@ -80,11 +81,11 @@ oxford_pets/
 The directory structure should look like
 ```bash
 stanford_cars/
-    cars_test\
-    cars_test_annos_withlabels.mat
-    cars_train\
-    devkit\
-    split_zhou_StanfordCars.json
+|–– cars_test\
+|–– cars_test_annos_withlabels.mat
+|–– cars_train\
+|–– devkit\
+|__ split_zhou_StanfordCars.json
 ```
 
 ### Flowers102
@@ -96,10 +97,10 @@ stanford_cars/
 The directory structure should look like
 ```bash
 oxford_flowers/
-    cat_to_name.json
-    imagelabels.mat
-    jpg/
-    split_zhou_OxfordFlowers.json
+|–– cat_to_name.json
+|–– imagelabels.mat
+|–– jpg/
+|__ split_zhou_OxfordFlowers.json
 ```
 
 ### Food101
@@ -109,11 +110,11 @@ oxford_flowers/
 The directory structure should look like
 ```bash
 food-101/
-    images/
-    license_agreement.txt
-    meta/
-    README.txt
-    split_zhou_Food101.json
+|–– images/
+|–– license_agreement.txt
+|–– meta/
+|–– README.txt
+|__ split_zhou_Food101.json
 ```
 
 ### FGVCAircraft
@@ -124,8 +125,8 @@ food-101/
 The directory structure should look like
 ```bash
 fgvc_aircraft/
-    images/
-    ... # a bunch of .txt files
+|–– images/
+|–– ... # a bunch of .txt files
 ```
 
 ### SUN397
@@ -138,9 +139,9 @@ fgvc_aircraft/
 The directory structure should look like
 ```bash
 sun397/
-    SUN397/
-    split_zhou_SUN397.json
-    ... # a bunch of .txt files
+|–– SUN397/
+|–– split_zhou_SUN397.json
+|–– ... # a bunch of .txt files
 ```
 
 ### DTD
@@ -150,10 +151,10 @@ sun397/
 The directory structure should look like
 ```bash
 dtd/
-    images/
-    imdb/
-    labels/
-    split_zhou_DescribableTextures.json
+|–– images/
+|–– imdb/
+|–– labels/
+|__ split_zhou_DescribableTextures.json
 ```
 
 ### EuroSAT
@@ -164,8 +165,8 @@ dtd/
 The directory structure should look like
 ```bash
 eurosat/
-    2750/
-    split_zhou_EuroSAT.json
+|–– 2750/
+|__ split_zhou_EuroSAT.json
 ```
 
 ### UCF101
@@ -176,8 +177,8 @@ eurosat/
 The directory structure should look like
 ```bash
 ucf101/
-    UCF-101-midframes/
-    split_zhou_UCF101.json
+|–– UCF-101-midframes/
+|__ split_zhou_UCF101.json
 ```
 
 ### ImageNetV2
@@ -189,8 +190,8 @@ ucf101/
 The directory structure should look like
 ```bash
 imagenetv2/
-    imagenetv2-matched-frequency-format-val/
-    classnames.txt
+|–– imagenetv2-matched-frequency-format-val/
+|__ classnames.txt
 ```
 
 ### ImageNet-Sketch
@@ -201,8 +202,8 @@ imagenetv2/
 The directory structure should look like
 ```bash
 imagenet-sketch/
-    images/ # contains 1,000 folders whose names have the format of n*
-    classnames.txt
+|–– images/ # contains 1,000 folders whose names have the format of n*
+|__ classnames.txt
 ```
 
 ### ImageNet-A
@@ -213,8 +214,8 @@ imagenet-sketch/
 The directory structure should look like
 ```bash
 imagenet-adversarial/
-    imagenet-a/ # contains 200 folders whose names have the format of n*
-    classnames.txt
+|–– imagenet-a/ # contains 200 folders whose names have the format of n*
+|__ classnames.txt
 ```
 
 ### ImageNet-R
@@ -225,6 +226,6 @@ imagenet-adversarial/
 The directory structure should look like
 ```bash
 imagenet-rendition/
-    imagenet-r/ # contains 200 folders whose names have the format of n*
-    classnames.txt
+|–– imagenet-r/ # contains 200 folders whose names have the format of n*
+|__ classnames.txt
 ```

@@ -60,18 +60,18 @@ After the experiments are finished, you can use `parse_test_res.py` to calculate
 
 ```bash
 output
-├── caltech101/
-|   ├── CoOp/
-|   |   ├── rn50_16shots/
-|   |   |   ├── nctx16_cscFalse_ctpend/
-|   |   |   |   ├── seed1/
-|   |   |   |   ├── seed2/
-|   |   |   |   └── seed3/
-|   |   ├── rn50_8shots/
-|   |   |   ├── nctx16_cscFalse_ctpend/
-|   |   |   |   ├── seed1/
-|   |   |   |   ├── seed2/
-|   |   |   |   └── seed3/
+|–– caltech101/
+|   |–– CoOp/
+|   |   |–– rn50_16shots/
+|   |   |   |–– nctx16_cscFalse_ctpend/
+|   |   |   |   |–– seed1/
+|   |   |   |   |–– seed2/
+|   |   |   |   |__ seed3/
+|   |   |–– rn50_8shots/
+|   |   |   |–– nctx16_cscFalse_ctpend/
+|   |   |   |   |–– seed1/
+|   |   |   |   |–– seed2/
+|   |   |   |   |__ seed3/
 ```
 
 To calculate the average results for the folder `rn50_16shots/nctx16_cscFalse_ctpend/`, you can run
