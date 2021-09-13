@@ -7,7 +7,7 @@ $DATA/
 |–– imagenet/
 |–– caltech-101/
 |–– oxford_pets/
-|__ stanford_cars/
+|–– stanford_cars/
 ```
 
 If you have some datasets already installed somewhere else, you can create symbolic links in `$DATA/dataset_name` that point to the original data to avoid duplicate download.
@@ -39,7 +39,7 @@ The instructions to prepare each dataset are detailed below. To ensure reproduci
 imagenet/
 |–– images/
 |   |–– train/ # contains 1,000 folders like n01440764, n01443537, etc.
-|   |__ val/
+|   |–– val/
 ```
 - If you had downloaded the ImageNet dataset before, you can create symbolic links to map the training and validation sets to `$DATA/imagenet/images`.
 - Download the `classnames.txt` to `$DATA/imagenet/` from this [link](https://drive.google.com/file/d/1-61f_ol79pViBFDG_IDlUQSwoLcn2XXF/view?usp=sharing). The class names are copied from [CLIP](https://github.com/openai/CLIP/blob/main/notebooks/Prompt_Engineering_for_ImageNet.ipynb).
@@ -53,7 +53,7 @@ The directory structure should look like
 ```
 caltech-101/
 |–– 101_ObjectCategories/
-|__ split_zhou_Caltech101.json
+|–– split_zhou_Caltech101.json
 ```
 
 ### OxfordPets
@@ -67,7 +67,7 @@ The directory structure should look like
 oxford_pets/
 |–– images/
 |–– annotations/
-|__ split_zhou_OxfordPets.json
+|–– split_zhou_OxfordPets.json
 ```
 
 ### StanfordCars
@@ -85,7 +85,7 @@ stanford_cars/
 |–– cars_test_annos_withlabels.mat
 |–– cars_train\
 |–– devkit\
-|__ split_zhou_StanfordCars.json
+|–– split_zhou_StanfordCars.json
 ```
 
 ### Flowers102
@@ -100,7 +100,7 @@ oxford_flowers/
 |–– cat_to_name.json
 |–– imagelabels.mat
 |–– jpg/
-|__ split_zhou_OxfordFlowers.json
+|–– split_zhou_OxfordFlowers.json
 ```
 
 ### Food101
@@ -114,7 +114,7 @@ food-101/
 |–– license_agreement.txt
 |–– meta/
 |–– README.txt
-|__ split_zhou_Food101.json
+|–– split_zhou_Food101.json
 ```
 
 ### FGVCAircraft
@@ -154,7 +154,7 @@ dtd/
 |–– images/
 |–– imdb/
 |–– labels/
-|__ split_zhou_DescribableTextures.json
+|–– split_zhou_DescribableTextures.json
 ```
 
 ### EuroSAT
@@ -166,7 +166,7 @@ The directory structure should look like
 ```
 eurosat/
 |–– 2750/
-|__ split_zhou_EuroSAT.json
+|–– split_zhou_EuroSAT.json
 ```
 
 ### UCF101
@@ -178,7 +178,7 @@ The directory structure should look like
 ```
 ucf101/
 |–– UCF-101-midframes/
-|__ split_zhou_UCF101.json
+|–– split_zhou_UCF101.json
 ```
 
 ### ImageNetV2
@@ -191,7 +191,7 @@ The directory structure should look like
 ```
 imagenetv2/
 |–– imagenetv2-matched-frequency-format-val/
-|__ classnames.txt
+|–– classnames.txt
 ```
 
 ### ImageNet-Sketch
@@ -203,7 +203,7 @@ The directory structure should look like
 ```
 imagenet-sketch/
 |–– images/ # contains 1,000 folders whose names have the format of n*
-|__ classnames.txt
+|–– classnames.txt
 ```
 
 ### ImageNet-A
@@ -215,7 +215,7 @@ The directory structure should look like
 ```
 imagenet-adversarial/
 |–– imagenet-a/ # contains 200 folders whose names have the format of n*
-|__ classnames.txt
+|–– classnames.txt
 ```
 
 ### ImageNet-R
@@ -227,5 +227,5 @@ The directory structure should look like
 ```
 imagenet-rendition/
 |–– imagenet-r/ # contains 200 folders whose names have the format of n*
-|__ classnames.txt
+|–– classnames.txt
 ```

@@ -66,12 +66,12 @@ output
 |   |   |   |–– nctx16_cscFalse_ctpend/
 |   |   |   |   |–– seed1/
 |   |   |   |   |–– seed2/
-|   |   |   |   |__ seed3/
+|   |   |   |   |–– seed3/
 |   |   |–– rn50_8shots/
 |   |   |   |–– nctx16_cscFalse_ctpend/
 |   |   |   |   |–– seed1/
 |   |   |   |   |–– seed2/
-|   |   |   |   |__ seed3/
+|   |   |   |   |–– seed3/
 ```
 
 To calculate the average results for the folder `rn50_16shots/nctx16_cscFalse_ctpend/`, you can run
