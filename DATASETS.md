@@ -2,7 +2,7 @@
 
 We suggest putting all datasets under the same folder (say `$DATA`) to ease management and following the instructions below to organize datasets to avoid modifying the source code. The file structure looks like
 
-```bash
+```
 $DATA/
 |–– imagenet/
 |–– caltech-101/
@@ -35,7 +35,7 @@ The instructions to prepare each dataset are detailed below. To ensure reproduci
 - Create a folder named `imagenet/` under `$DATA`.
 - Create `images/` under `imagenet/`.
 - Download the dataset from the [official website](https://image-net.org/index.php) and extract the training and validation sets to `$DATA/imagenet/images`. The directory structure should look like
-```bash
+```
 imagenet/
 |–– images/
 |   |–– train/ # contains 1,000 folders like n01440764, n01443537, etc.
@@ -50,7 +50,7 @@ imagenet/
 - Download `split_zhou_Caltech101.json` from this [link](https://drive.google.com/file/d/1hyarUivQE36mY6jSomru6Fjd-JzwcCzN/view?usp=sharing) and put it under `$DATA/caltech-101`. 
 
 The directory structure should look like
-```bash
+```
 caltech-101/
 |–– 101_ObjectCategories/
 |__ split_zhou_Caltech101.json
@@ -63,7 +63,7 @@ caltech-101/
 - Download `split_zhou_OxfordPets.json` from this [link](https://drive.google.com/file/d/1501r8Ber4nNKvmlFVQZ8SeUHTcdTTEqs/view?usp=sharing). 
 
 The directory structure should look like
-```bash
+```
 oxford_pets/
 |–– images/
 |–– annotations/
@@ -79,7 +79,7 @@ oxford_pets/
 - Download `split_zhou_StanfordCars.json` from this [link](https://drive.google.com/file/d/1ObCFbaAgVu0I-k_Au-gIUcefirdAuizT/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 stanford_cars/
 |–– cars_test\
 |–– cars_test_annos_withlabels.mat
@@ -95,7 +95,7 @@ stanford_cars/
 - Download `split_zhou_OxfordFlowers.json` from [here](https://drive.google.com/file/d/1Pp0sRXzZFZq15zVOzKjKBu4A9i01nozT/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 oxford_flowers/
 |–– cat_to_name.json
 |–– imagelabels.mat
@@ -108,7 +108,7 @@ oxford_flowers/
 - Download `split_zhou_Food101.json` from [here](https://drive.google.com/file/d/1QK0tGi096I0Ba6kggatX1ee6dJFIcEJl/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 food-101/
 |–– images/
 |–– license_agreement.txt
@@ -123,7 +123,7 @@ food-101/
 - Move `data/` to `$DATA` and rename the folder to `fgvc_aircraft/`.
 
 The directory structure should look like
-```bash
+```
 fgvc_aircraft/
 |–– images/
 |–– ... # a bunch of .txt files
@@ -137,7 +137,7 @@ fgvc_aircraft/
 - Download `split_zhou_SUN397.json` from this [link](https://drive.google.com/file/d/1y2RD81BYuiyvebdN-JymPfyWYcd8_MUq/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 sun397/
 |–– SUN397/
 |–– split_zhou_SUN397.json
@@ -149,7 +149,7 @@ sun397/
 - Download `split_zhou_DescribableTextures.json` from this [link](https://drive.google.com/file/d/1u3_QfB467jqHgNXC00UIzbLZRQCg2S7x/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 dtd/
 |–– images/
 |–– imdb/
@@ -163,7 +163,7 @@ dtd/
 - Download `split_zhou_EuroSAT.json` from [here](https://drive.google.com/file/d/1Ip7yaCWFi0eaOFUGga0lUdVi_DDQth1o/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 eurosat/
 |–– 2750/
 |__ split_zhou_EuroSAT.json
@@ -175,7 +175,7 @@ eurosat/
 - Download `split_zhou_UCF101.json` from this [link](https://drive.google.com/file/d/1I0S0q91hJfsV9Gf4xDIjgDq4AqBNJb1y/view?usp=sharing).
 
 The directory structure should look like
-```bash
+```
 ucf101/
 |–– UCF-101-midframes/
 |__ split_zhou_UCF101.json
@@ -188,7 +188,7 @@ ucf101/
 - Copy `$DATA/imagenet/classnames.txt` to `$DATA/imagenetv2/`.
 
 The directory structure should look like
-```bash
+```
 imagenetv2/
 |–– imagenetv2-matched-frequency-format-val/
 |__ classnames.txt
@@ -200,7 +200,7 @@ imagenetv2/
 - Copy `$DATA/imagenet/classnames.txt` to `$DATA/imagenet-sketch/`.
 
 The directory structure should look like
-```bash
+```
 imagenet-sketch/
 |–– images/ # contains 1,000 folders whose names have the format of n*
 |__ classnames.txt
@@ -212,7 +212,7 @@ imagenet-sketch/
 - Copy `$DATA/imagenet/classnames.txt` to `$DATA/imagenet-adversarial/`.
 
 The directory structure should look like
-```bash
+```
 imagenet-adversarial/
 |–– imagenet-a/ # contains 200 folders whose names have the format of n*
 |__ classnames.txt
@@ -224,7 +224,7 @@ imagenet-adversarial/
 - Copy `$DATA/imagenet/classnames.txt` to `$DATA/imagenet-rendition/`.
 
 The directory structure should look like
-```bash
+```
 imagenet-rendition/
 |–– imagenet-r/ # contains 200 folders whose names have the format of n*
 |__ classnames.txt

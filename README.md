@@ -58,7 +58,7 @@ Below we provide examples on how to run CoOp on Caltech101.
 
 After the experiments are finished, you can use `parse_test_res.py` to calculate the average results instead of manually looking into the log files. Say the structure of `output/` is
 
-```bash
+```
 output
 |–– caltech101/
 |   |–– CoOp/
