@@ -152,6 +152,23 @@ class PromptLearner(nn.Module):
                 prompts.append(prompt)
             prompts = torch.cat(prompts, dim=0)
         
+        elif self.class_token_position == 'front':
+            prompts = []
+            for i in range(self.n_cls):
+                name_len = self.name_lens[i]
+                prefix_i = prefix[i:i+1, :, :]
+                class_i = suffix[i:i+1, :name_len, :]
+                suffix_i = suffix[i:i+1, name_len:, :]
+                ctx_i = ctx[i:i+1, :, :]
+                prompt = torch.cat([
+                    prefix_i, # (1, 1, dim)
+                    class_i, # (1, name_len, dim)
+                    ctx_i, # (1, n_ctx, dim)
+                    suffix_i # (1, *, dim)
+                ], dim=1)
+                prompts.append(prompt)
+            prompts = torch.cat(prompts, dim=0)
+        
         else:
             raise ValueError
 
