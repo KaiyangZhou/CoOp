@@ -32,9 +32,9 @@ do
         --dataset-config-file configs/datasets/${DATASET}.yaml \
         --config-file configs/trainers/${TRAINER}/${CFG}.yaml \
         --output-dir ${DIR} \
-        TRAINER.OURS.N_CTX ${NCTX} \
-        TRAINER.OURS.CSC ${CSC} \
-        TRAINER.OURS.CLASS_TOKEN_POSITION ${CTP} \
+        TRAINER.COOP.N_CTX ${NCTX} \
+        TRAINER.COOP.CSC ${CSC} \
+        TRAINER.COOP.CLASS_TOKEN_POSITION ${CTP} \
         TEST.FINAL_MODEL ${TESTMODEL} \
         DATASET.NUM_SHOTS ${SHOTS}
     fi

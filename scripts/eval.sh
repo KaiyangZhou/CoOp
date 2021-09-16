@@ -25,7 +25,7 @@ do
     --model-dir output/imagenet/${TRAINER}/${CFG}_${SHOTS}shots/nctx${NCTX}_csc${CSC}_ctp${CTP}/seed${SEED} \
     --load-epoch 50 \
     --eval-only \
-    TRAINER.OURS.N_CTX ${NCTX} \
-    TRAINER.OURS.CSC ${CSC} \
-    TRAINER.OURS.CLASS_TOKEN_POSITION ${CTP}
+    TRAINER.COOP.N_CTX ${NCTX} \
+    TRAINER.COOP.CSC ${CSC} \
+    TRAINER.COOP.CLASS_TOKEN_POSITION ${CTP}
 done
