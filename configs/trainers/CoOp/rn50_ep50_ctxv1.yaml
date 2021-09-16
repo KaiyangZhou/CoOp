@@ -32,5 +32,5 @@ MODEL:
     NAME: 'RN50'
 
 TRAINER:
-  OURS:
+  COOP:
     CTX_INIT: 'a photo of a'
