@@ -7,7 +7,7 @@ from dassl.optim import build_optimizer, build_lr_scheduler
 from clip import clip
 from clip.model import convert_weights
 
-from .ours import load_clip_to_cpu
+from .coop import load_clip_to_cpu
 from .imagenet_templates import IMAGENET_TEMPLATES, IMAGENET_TEMPLATES_SELECT
 
 CUSTOM_TEMPLATES = {
