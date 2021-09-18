@@ -12,7 +12,7 @@ CoOp (Context Optimization) is a differentiable approach that focuses on continu
 
 ## Updates
 
-- **18.09.2021**: We have fixed an error in Dassl which could cause a training data loader to have zero length when the dataset size is smaller than the batch size (due to `drop_last=True`). Please pull the latest commit for Dassl (>= `8eecc3c`). This error led to incorrect results for EuroSAT's 1- and 2-shot settings. We will update the paper on arxiv to fix this error.
+- **18.09.2021**: We have fixed an error in Dassl which could cause a training data loader to have zero length when the dataset size is smaller than the batch size (due to `drop_last=True`). Please pull the latest commit for Dassl (>= `8eecc3c`). This error led to lower results for CoOp in EuroSAT's 1- and 2-shot settings (others are all correct). We will update the paper on arxiv to fix this error.
 
 ## How to Install
 This code is built on top of the awesome toolbox [Dassl.pytorch](https://github.com/KaiyangZhou/Dassl.pytorch) so you need to install the `dassl` environment first. Simply follow the instructions described [here](https://github.com/KaiyangZhou/Dassl.pytorch#installation) to install `dassl` as well as PyTorch. After that, run `pip install -r requirements.txt` under `CoOp/` to install a few more packages required by [CLIP](https://github.com/openai/CLIP) (this should be done when `dassl` is activated). Then, you are ready to go.
