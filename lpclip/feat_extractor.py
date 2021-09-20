@@ -4,7 +4,6 @@ import torch
 import sys
 sys.path.append(os.path.abspath('..'))
 
-from datasets.wrapper import DatasetWrapper
 from datasets.oxford_pets import OxfordPets
 from datasets.oxford_flowers import OxfordFlowers
 from datasets.fgvc_aircraft import FGVCAircraft
@@ -24,6 +23,7 @@ from datasets.imagenet_r import ImageNetR
 from dassl.utils import setup_logger, set_random_seed, collect_env_info
 from dassl.config import get_cfg_default
 from dassl.data.transforms import build_transform
+from dassl.data import DatasetWrapper
 
 import clip
 
