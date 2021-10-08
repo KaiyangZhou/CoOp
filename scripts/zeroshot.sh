@@ -3,7 +3,8 @@
 cd ..
 
 # custom config
-DATA=/path/to/datasets
+#DATA=/path/to/datasets
+DATA=/mnt/lustre/share/kyzhou/imcls
 TRAINER=ZeroshotCLIP
 DATASET=$1
 CFG=$2  # rn50, rn101, vit_b32 or vit_b16

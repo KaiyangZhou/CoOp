@@ -2,7 +2,8 @@ import os, argparse
 import numpy as np
 import torch
 import sys
-sys.path.append(os.path.abspath('..'))
+
+sys.path.append(os.path.abspath(".."))
 
 from datasets.oxford_pets import OxfordPets
 from datasets.oxford_flowers import OxfordFlowers
@@ -31,16 +32,16 @@ import clip
 
 
 def print_args(args, cfg):
-    print('***************')
-    print('** Arguments **')
-    print('***************')
+    print("***************")
+    print("** Arguments **")
+    print("***************")
     optkeys = list(args.__dict__.keys())
     optkeys.sort()
     for key in optkeys:
-        print('{}: {}'.format(key, args.__dict__[key]))
-    print('************')
-    print('** Config **')
-    print('************')
+        print("{}: {}".format(key, args.__dict__[key]))
+    print("************")
+    print("** Config **")
+    print("************")
     print(cfg)
 
 
@@ -73,10 +74,11 @@ def extend_cfg(cfg):
         cfg.TRAINER.MY_MODEL.PARAM_C = False
     """
     from yacs.config import CfgNode as CN
+
     cfg.TRAINER.OURS = CN()
     cfg.TRAINER.OURS.N_CTX = 10  # number of context vectors
     cfg.TRAINER.OURS.CSC = False  # class-specific context
-    cfg.TRAINER.OURS.CTX_INIT = ''  # initialize context vectors with given words
+    cfg.TRAINER.OURS.CTX_INIT = ""  # initialize context vectors with given words
     cfg.TRAINER.OURS.WEIGHT_U = 0.1  # weight for the unsupervised loss
 
 
@@ -103,7 +105,7 @@ def setup_cfg(args):
 def main(args):
     cfg = setup_cfg(args)
     if cfg.SEED >= 0:
-        print('Setting fixed seed: {}'.format(cfg.SEED))
+        print("Setting fixed seed: {}".format(cfg.SEED))
         set_random_seed(cfg.SEED)
     setup_logger(cfg.OUTPUT_DIR)
 
@@ -111,17 +113,17 @@ def main(args):
         torch.backends.cudnn.benchmark = True
 
     print_args(args, cfg)
-    print('Collecting env info ...')
-    print('** System info **\n{}\n'.format(collect_env_info()))
+    print("Collecting env info ...")
+    print("** System info **\n{}\n".format(collect_env_info()))
 
     ######################################
     #   Setup DataLoader
     ######################################
     dataset = eval(cfg.DATASET.NAME)(cfg)
 
-    if args.split == 'train':
+    if args.split == "train":
         dataset_input = dataset.train_x
-    elif args.split == 'val':
+    elif args.split == "val":
         dataset_input = dataset.val
     else:
         dataset_input = dataset.test
@@ -134,13 +136,13 @@ def main(args):
         shuffle=False,
         num_workers=cfg.DATALOADER.NUM_WORKERS,
         drop_last=False,
-        pin_memory=(torch.cuda.is_available() and cfg.USE_CUDA)
+        pin_memory=(torch.cuda.is_available() and cfg.USE_CUDA),
     )
 
     ########################################
     #   Setup Network
     ########################################
-    clip_model, _ = clip.load('RN50', 'cuda', jit=False)
+    clip_model, _ = clip.load("RN50", "cuda", jit=False)
     clip_model.eval()
     ###################################################################################################################
     # Start Feature Extractor
@@ -149,30 +151,45 @@ def main(args):
     train_dataiter = iter(data_loader)
     for train_step in range(1, len(train_dataiter) + 1):
         batch = next(train_dataiter)
-        data = batch['img'].cuda()
+        data = batch["img"].cuda()
         feature = clip_model.visual(data)
         feature = feature.cpu()
         for idx in range(len(data)):
             feature_list.append(feature[idx].tolist())
-        label_list.extend(batch['label'].tolist())
+        label_list.extend(batch["label"].tolist())
     save_dir = os.path.join(cfg.OUTPUT_DIR, cfg.DATASET.NAME)
     os.makedirs(save_dir, exist_ok=True)
-    save_filename = f'{args.split}'
-    np.savez(os.path.join(save_dir, save_filename), feature_list=feature_list, label_list=label_list)
+    save_filename = f"{args.split}"
+    np.savez(
+        os.path.join(save_dir, save_filename),
+        feature_list=feature_list,
+        label_list=label_list,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--root', type=str, default='', help='path to dataset')
-    parser.add_argument('--output-dir', type=str, default='', help='output directory')
-    parser.add_argument('--config-file', type=str, default='', help='path to config file')
-    parser.add_argument('--dataset-config-file', type=str, default='', help='path to config file for dataset setup')
-    parser.add_argument('--num-shot', type=int, default=1, help='number of shots')
-    parser.add_argument('--split', type=str, choices=['train', 'val', 'test'], help='which split')
-    parser.add_argument('--trainer', type=str, default='', help='name of trainer')
-    parser.add_argument('--backbone', type=str, default='', help='name of CNN backbone')
-    parser.add_argument('--head', type=str, default='', help='name of head')
-    parser.add_argument('--seed', type=int, default=-1, help='only positive value enables a fixed seed')
-    parser.add_argument('--eval-only', action='store_true', help='evaluation only')
+    parser.add_argument("--root", type=str, default="", help="path to dataset")
+    parser.add_argument("--output-dir", type=str, default="", help="output directory")
+    parser.add_argument(
+        "--config-file", type=str, default="", help="path to config file"
+    )
+    parser.add_argument(
+        "--dataset-config-file",
+        type=str,
+        default="",
+        help="path to config file for dataset setup",
+    )
+    parser.add_argument("--num-shot", type=int, default=1, help="number of shots")
+    parser.add_argument(
+        "--split", type=str, choices=["train", "val", "test"], help="which split"
+    )
+    parser.add_argument("--trainer", type=str, default="", help="name of trainer")
+    parser.add_argument("--backbone", type=str, default="", help="name of CNN backbone")
+    parser.add_argument("--head", type=str, default="", help="name of head")
+    parser.add_argument(
+        "--seed", type=int, default=-1, help="only positive value enables a fixed seed"
+    )
+    parser.add_argument("--eval-only", action="store_true", help="evaluation only")
     args = parser.parse_args()
     main(args)

@@ -7,30 +7,30 @@ DATALOADER:
 
 INPUT:
   SIZE: (224, 224)
-  INTERPOLATION: 'bicubic'
+  INTERPOLATION: "bicubic"
   PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
   PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
-  TRANSFORMS: ['random_flip', 'random_translation', 'center_crop', 'normalize']
+  TRANSFORMS: ["random_flip", "random_translation", "center_crop", "normalize"]
 
 OPTIM:
-  NAME: 'sgd'
+  NAME: "sgd"
   LR: 0.002
   MAX_EPOCH: 200
-  LR_SCHEDULER: 'cosine'
+  LR_SCHEDULER: "cosine"
   WARMUP_EPOCH: 1
-  WARMUP_TYPE: 'constant'
+  WARMUP_TYPE: "constant"
   WARMUP_CONS_LR: 1e-5
 
 TRAIN:
   PRINT_FREQ: 5
 
 TEST:
-  FINAL_MODEL: 'best_val'
+  FINAL_MODEL: "best_val"
 
 MODEL:
   BACKBONE:
-    NAME: 'RN50'
+    NAME: "RN50"
 
 TRAINER:
   COOP:
-    CTX_INIT: 'a photo of a'
+    CTX_INIT: "a photo of a"

@@ -28,16 +28,16 @@ import trainers.zsclip
 
 
 def print_args(args, cfg):
-    print('***************')
-    print('** Arguments **')
-    print('***************')
+    print("***************")
+    print("** Arguments **")
+    print("***************")
     optkeys = list(args.__dict__.keys())
     optkeys.sort()
     for key in optkeys:
-        print('{}: {}'.format(key, args.__dict__[key]))
-    print('************')
-    print('** Config **')
-    print('************')
+        print("{}: {}".format(key, args.__dict__[key]))
+    print("************")
+    print("** Config **")
+    print("************")
     print(cfg)
 
 
@@ -85,12 +85,13 @@ def extend_cfg(cfg):
         cfg.TRAINER.MY_MODEL.PARAM_C = False
     """
     from yacs.config import CfgNode as CN
+
     cfg.TRAINER.COOP = CN()
     cfg.TRAINER.COOP.N_CTX = 16  # number of context vectors
     cfg.TRAINER.COOP.CSC = False  # class-specific context
-    cfg.TRAINER.COOP.CTX_INIT = ''  # initialization words
+    cfg.TRAINER.COOP.CTX_INIT = ""  # initialization words
     cfg.TRAINER.COOP.HALF_PREC = True  # float16
-    cfg.TRAINER.COOP.CLASS_TOKEN_POSITION = 'end'  # 'middle' or 'end' or 'front'
+    cfg.TRAINER.COOP.CLASS_TOKEN_POSITION = "end"  # 'middle' or 'end' or 'front'
 
 
 def setup_cfg(args):
@@ -119,7 +120,7 @@ def setup_cfg(args):
 def main(args):
     cfg = setup_cfg(args)
     if cfg.SEED >= 0:
-        print('Setting fixed seed: {}'.format(cfg.SEED))
+        print("Setting fixed seed: {}".format(cfg.SEED))
         set_random_seed(cfg.SEED)
     setup_logger(cfg.OUTPUT_DIR)
 
@@ -127,8 +128,8 @@ def main(args):
         torch.backends.cudnn.benchmark = True
 
     print_args(args, cfg)
-    print('Collecting env info ...')
-    print('** System info **\n{}\n'.format(collect_env_info()))
+    print("Collecting env info ...")
+    print("** System info **\n{}\n".format(collect_env_info()))
 
     trainer = build_trainer(cfg)
 
@@ -141,77 +142,58 @@ def main(args):
         trainer.train()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--root', type=str, default='', help='path to dataset')
+    parser.add_argument("--root", type=str, default="", help="path to dataset")
+    parser.add_argument("--output-dir", type=str, default="", help="output directory")
     parser.add_argument(
-        '--output-dir', type=str, default='', help='output directory'
-    )
-    parser.add_argument(
-        '--resume',
+        "--resume",
         type=str,
-        default='',
-        help='checkpoint directory (from which the training resumes)'
+        default="",
+        help="checkpoint directory (from which the training resumes)",
     )
     parser.add_argument(
-        '--seed',
-        type=int,
-        default=-1,
-        help='only positive value enables a fixed seed'
+        "--seed", type=int, default=-1, help="only positive value enables a fixed seed"
     )
     parser.add_argument(
-        '--source-domains',
+        "--source-domains", type=str, nargs="+", help="source domains for DA/DG"
+    )
+    parser.add_argument(
+        "--target-domains", type=str, nargs="+", help="target domains for DA/DG"
+    )
+    parser.add_argument(
+        "--transforms", type=str, nargs="+", help="data augmentation methods"
+    )
+    parser.add_argument(
+        "--config-file", type=str, default="", help="path to config file"
+    )
+    parser.add_argument(
+        "--dataset-config-file",
         type=str,
-        nargs='+',
-        help='source domains for DA/DG'
+        default="",
+        help="path to config file for dataset setup",
     )
+    parser.add_argument("--trainer", type=str, default="", help="name of trainer")
+    parser.add_argument("--backbone", type=str, default="", help="name of CNN backbone")
+    parser.add_argument("--head", type=str, default="", help="name of head")
+    parser.add_argument("--eval-only", action="store_true", help="evaluation only")
     parser.add_argument(
-        '--target-domains',
+        "--model-dir",
         type=str,
-        nargs='+',
-        help='target domains for DA/DG'
+        default="",
+        help="load model from this directory for eval-only mode",
     )
     parser.add_argument(
-        '--transforms', type=str, nargs='+', help='data augmentation methods'
+        "--load-epoch", type=int, help="load model weights at this epoch for evaluation"
     )
     parser.add_argument(
-        '--config-file', type=str, default='', help='path to config file'
+        "--no-train", action="store_true", help="do not call trainer.train()"
     )
     parser.add_argument(
-        '--dataset-config-file',
-        type=str,
-        default='',
-        help='path to config file for dataset setup'
-    )
-    parser.add_argument(
-        '--trainer', type=str, default='', help='name of trainer'
-    )
-    parser.add_argument(
-        '--backbone', type=str, default='', help='name of CNN backbone'
-    )
-    parser.add_argument('--head', type=str, default='', help='name of head')
-    parser.add_argument(
-        '--eval-only', action='store_true', help='evaluation only'
-    )
-    parser.add_argument(
-        '--model-dir',
-        type=str,
-        default='',
-        help='load model from this directory for eval-only mode'
-    )
-    parser.add_argument(
-        '--load-epoch',
-        type=int,
-        help='load model weights at this epoch for evaluation'
-    )
-    parser.add_argument(
-        '--no-train', action='store_true', help='do not call trainer.train()'
-    )
-    parser.add_argument(
-        'opts',
+        "opts",
         default=None,
         nargs=argparse.REMAINDER,
-        help='modify config options using the command-line'
+        help="modify config options using the command-line",
     )
     args = parser.parse_args()
     main(args)
