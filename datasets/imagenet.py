@@ -5,8 +5,6 @@ from collections import OrderedDict
 from dassl.data.datasets import DATASET_REGISTRY, Datum, DatasetBase
 from dassl.utils import listdir_nohidden
 
-TO_BE_IGNORED = ["new_val_prep.sh", "train1.txt", "train.txt"]
-
 
 @DATASET_REGISTRY.register()
 class ImageNet(DatasetBase):
@@ -58,8 +56,7 @@ class ImageNet(DatasetBase):
 
     def read_data(self, classnames, split_dir):
         split_dir = os.path.join(self.image_dir, split_dir)
-        folders = listdir_nohidden(split_dir, sort=True)
-        folders = [f for f in folders if f not in TO_BE_IGNORED]
+        folders = sorted(f.name for f in os.scandir(split_dir) if f.is_dir())
         items = []
 
         for label, folder in enumerate(folders):
