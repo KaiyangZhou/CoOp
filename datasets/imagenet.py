@@ -1,4 +1,5 @@
 import os
+import pickle
 from collections import OrderedDict
 
 from dassl.data.datasets import DATASET_REGISTRY, Datum, DatasetBase
@@ -16,14 +17,24 @@ class ImageNet(DatasetBase):
         root = os.path.abspath(os.path.expanduser(cfg.DATASET.ROOT))
         self.dataset_dir = os.path.join(root, self.dataset_dir)
         self.image_dir = os.path.join(self.dataset_dir, 'images')
+        self.preprocessed = os.path.join(self.dataset_dir, "preprocessed.pkl")
 
-        text_file = os.path.join(self.dataset_dir, 'classnames.txt')
-        classnames = self.read_classnames(text_file)
-        
-        train = self.read_data(classnames, 'train')
-        # Follow standard practice to perform evaluation on the val set
-        # Also used as the val set (so evaluate the last-step model)
-        test = self.read_data(classnames, 'val')
+        if os.path.exists(self.preprocessed):
+            with open(self.preprocessed, "rb") as f:
+                preprocessed = pickle.load(f)
+                train = preprocessed["train"]
+                test = preprocessed["test"]
+        else:
+            text_file = os.path.join(self.dataset_dir, 'classnames.txt')
+            classnames = self.read_classnames(text_file)
+            train = self.read_data(classnames, 'train')
+            # Follow standard practice to perform evaluation on the val set
+            # Also used as the val set (so evaluate the last-step model)
+            test = self.read_data(classnames, 'val')
+
+            preprocessed = {"train": train, "test": test}
+            with open(self.preprocessed, "wb") as f:
+                pickle.dump(preprocessed, f, protocol=pickle.HIGHEST_PROTOCOL)
         
         num_shots = cfg.DATASET.NUM_SHOTS
         train = self.generate_fewshot_dataset(train, num_shots=num_shots)
