@@ -19,9 +19,7 @@ class StanfordCars(DatasetBase):
         if os.path.exists(self.split_path):
             train, val, test = OxfordPets.read_split(self.split_path, self.dataset_dir)
         else:
-            trainval_file = os.path.join(
-                self.dataset_dir, "devkit", "cars_train_annos.mat"
-            )
+            trainval_file = os.path.join(self.dataset_dir, "devkit", "cars_train_annos.mat")
             test_file = os.path.join(self.dataset_dir, "cars_test_annos_withlabels.mat")
             meta_file = os.path.join(self.dataset_dir, "devkit", "cars_meta.mat")
             trainval = self.read_data("cars_train", trainval_file, meta_file)

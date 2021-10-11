@@ -66,9 +66,7 @@ class PromptLearner(nn.Module):
         ctx_dim = clip_model.ln_final.weight.shape[0]
         clip_imsize = clip_model.visual.input_resolution
         cfg_imsize = cfg.INPUT.SIZE[0]
-        assert (
-            cfg_imsize == clip_imsize
-        ), f"cfg_imsize ({cfg_imsize}) must equal to clip_imsize ({clip_imsize})"
+        assert cfg_imsize == clip_imsize, f"cfg_imsize ({cfg_imsize}) must equal to clip_imsize ({clip_imsize})"
 
         if ctx_init:
             # use given words to initialize context vectors
@@ -242,9 +240,7 @@ class CoOp(TrainerX):
         # NOTE: only give prompt_learner to the optimizer
         self.optim = build_optimizer(self.model.prompt_learner, cfg.OPTIM)
         self.sched = build_lr_scheduler(self.optim, cfg.OPTIM)
-        self.register_model(
-            "prompt_learner", self.model.prompt_learner, self.optim, self.sched
-        )
+        self.register_model("prompt_learner", self.model.prompt_learner, self.optim, self.sched)
 
         device_count = torch.cuda.device_count()
         if device_count > 1:
@@ -304,9 +300,6 @@ class CoOp(TrainerX):
             if "token_suffix" in state_dict:
                 del state_dict["token_suffix"]
 
-            print(
-                "Loading weights to {} "
-                'from "{}" (epoch = {})'.format(name, model_path, epoch)
-            )
+            print("Loading weights to {} " 'from "{}" (epoch = {})'.format(name, model_path, epoch))
             # set strict=False
             self._models[name].load_state_dict(state_dict, strict=False)

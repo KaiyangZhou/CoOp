@@ -20,9 +20,7 @@ class OxfordFlowers(DatasetBase):
         self.image_dir = os.path.join(self.dataset_dir, "jpg")
         self.label_file = os.path.join(self.dataset_dir, "imagelabels.mat")
         self.lab2cname_file = os.path.join(self.dataset_dir, "cat_to_name.json")
-        self.split_path = os.path.join(
-            self.dataset_dir, "split_zhou_OxfordFlowers.json"
-        )
+        self.split_path = os.path.join(self.dataset_dir, "split_zhou_OxfordFlowers.json")
 
         if os.path.exists(self.split_path):
             train, val, test = OxfordPets.read_split(self.split_path, self.image_dir)
@@ -50,9 +48,7 @@ class OxfordFlowers(DatasetBase):
         def _collate(ims, y, c):
             items = []
             for im in ims:
-                item = Datum(
-                    impath=im, label=y - 1, classname=c  # convert to 0-based label
-                )
+                item = Datum(impath=im, label=y - 1, classname=c)  # convert to 0-based label
                 items.append(item)
             return items
 

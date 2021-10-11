@@ -33,9 +33,7 @@ class EuroSAT(DatasetBase):
         if os.path.exists(self.split_path):
             train, val, test = OxfordPets.read_split(self.split_path, self.image_dir)
         else:
-            train, val, test = DTD.read_and_split_data(
-                self.image_dir, new_cnames=NEW_CNAMES
-            )
+            train, val, test = DTD.read_and_split_data(self.image_dir, new_cnames=NEW_CNAMES)
             OxfordPets.save_split(train, val, test, self.split_path, self.image_dir)
 
         num_shots = cfg.DATASET.NUM_SHOTS
@@ -49,8 +47,6 @@ class EuroSAT(DatasetBase):
         for item_old in dataset_old:
             cname_old = item_old.classname
             cname_new = NEW_CLASSNAMES[cname_old]
-            item_new = Datum(
-                impath=item_old.impath, label=item_old.label, classname=cname_new
-            )
+            item_new = Datum(impath=item_old.impath, label=item_old.label, classname=cname_new)
             dataset_new.append(item_new)
         return dataset_new

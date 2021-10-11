@@ -93,9 +93,7 @@ class ZeroshotCLIP2(ZeroshotCLIP):
             text_features = text_features / text_features.norm(dim=-1, keepdim=True)
             mean_text_features = mean_text_features + text_features
         mean_text_features = mean_text_features / num_temp
-        mean_text_features = mean_text_features / mean_text_features.norm(
-            dim=-1, keepdim=True
-        )
+        mean_text_features = mean_text_features / mean_text_features.norm(dim=-1, keepdim=True)
 
         self.text_features = mean_text_features
         self.clip_model = clip_model

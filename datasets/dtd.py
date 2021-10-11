@@ -16,9 +16,7 @@ class DescribableTextures(DatasetBase):
         root = os.path.abspath(os.path.expanduser(cfg.DATASET.ROOT))
         self.dataset_dir = os.path.join(root, self.dataset_dir)
         self.image_dir = os.path.join(self.dataset_dir, "images")
-        self.split_path = os.path.join(
-            self.dataset_dir, "split_zhou_DescribableTextures.json"
-        )
+        self.split_path = os.path.join(self.dataset_dir, "split_zhou_DescribableTextures.json")
 
         if os.path.exists(self.split_path):
             train, val, test = OxfordPets.read_split(self.split_path, self.image_dir)
@@ -33,9 +31,7 @@ class DescribableTextures(DatasetBase):
         super().__init__(train_x=train, val=val, test=test)
 
     @staticmethod
-    def read_and_split_data(
-        image_dir, p_trn=0.5, p_val=0.2, ignored=[], new_cnames=None
-    ):
+    def read_and_split_data(image_dir, p_trn=0.5, p_val=0.2, ignored=[], new_cnames=None):
         # The data are supposed to be organized into the following structure
         # =============
         # images/
@@ -48,9 +44,7 @@ class DescribableTextures(DatasetBase):
         categories.sort()
 
         p_tst = 1 - p_trn - p_val
-        print(
-            f"Splitting into {p_trn:.0%} train, {p_val:.0%} val, and {p_tst:.0%} test"
-        )
+        print(f"Splitting into {p_trn:.0%} train, {p_val:.0%} val, and {p_tst:.0%} test")
 
         def _collate(ims, y, c):
             items = []

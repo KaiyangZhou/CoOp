@@ -171,9 +171,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=str, default="", help="path to dataset")
     parser.add_argument("--output-dir", type=str, default="", help="output directory")
-    parser.add_argument(
-        "--config-file", type=str, default="", help="path to config file"
-    )
+    parser.add_argument("--config-file", type=str, default="", help="path to config file")
     parser.add_argument(
         "--dataset-config-file",
         type=str,
@@ -181,15 +179,11 @@ if __name__ == "__main__":
         help="path to config file for dataset setup",
     )
     parser.add_argument("--num-shot", type=int, default=1, help="number of shots")
-    parser.add_argument(
-        "--split", type=str, choices=["train", "val", "test"], help="which split"
-    )
+    parser.add_argument("--split", type=str, choices=["train", "val", "test"], help="which split")
     parser.add_argument("--trainer", type=str, default="", help="name of trainer")
     parser.add_argument("--backbone", type=str, default="", help="name of CNN backbone")
     parser.add_argument("--head", type=str, default="", help="name of head")
-    parser.add_argument(
-        "--seed", type=int, default=-1, help="only positive value enables a fixed seed"
-    )
+    parser.add_argument("--seed", type=int, default=-1, help="only positive value enables a fixed seed")
     parser.add_argument("--eval-only", action="store_true", help="evaluation only")
     args = parser.parse_args()
     main(args)
