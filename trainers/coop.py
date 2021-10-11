@@ -3,6 +3,7 @@ import os.path as osp
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+from torch.cuda.amp import GradScaler, autocast
 
 from dassl.engine import TRAINER_REGISTRY, TrainerX
 from dassl.metrics import compute_accuracy
@@ -126,7 +127,7 @@ class PromptLearner(nn.Module):
             prompts = torch.cat(
                 [
                     prefix,  # (n_cls, 1, dim)
-                    ctx,  # (n_cls, n_ctx, dim)
+                    ctx,     # (n_cls, n_ctx, dim)
                     suffix,  # (n_cls, *, dim)
                 ],
                 dim=1,
@@ -144,11 +145,11 @@ class PromptLearner(nn.Module):
                 ctx_i_half2 = ctx[i : i + 1, half_n_ctx:, :]
                 prompt = torch.cat(
                     [
-                        prefix_i,  # (1, 1, dim)
+                        prefix_i,     # (1, 1, dim)
                         ctx_i_half1,  # (1, n_ctx//2, dim)
-                        class_i,  # (1, name_len, dim)
+                        class_i,      # (1, name_len, dim)
                         ctx_i_half2,  # (1, n_ctx//2, dim)
-                        suffix_i,  # (1, *, dim)
+                        suffix_i,     # (1, *, dim)
                     ],
                     dim=1,
                 )
@@ -166,8 +167,8 @@ class PromptLearner(nn.Module):
                 prompt = torch.cat(
                     [
                         prefix_i,  # (1, 1, dim)
-                        class_i,  # (1, name_len, dim)
-                        ctx_i,  # (1, n_ctx, dim)
+                        class_i,   # (1, name_len, dim)
+                        ctx_i,     # (1, n_ctx, dim)
                         suffix_i,  # (1, *, dim)
                     ],
                     dim=1,
@@ -215,14 +216,18 @@ class CoOp(TrainerX):
     https://arxiv.org/abs/2109.01134
     """
 
+    def check_cfg(self, cfg):
+        assert cfg.TRAINER.COOP.PREC in ["fp16", "fp32", "amp"]
+
     def build_model(self):
         cfg = self.cfg
         classnames = self.dm.dataset.classnames
 
         print(f"Loading CLIP (backbone: {cfg.MODEL.BACKBONE.NAME})")
         clip_model = load_clip_to_cpu(cfg)
-        if not cfg.TRAINER.COOP.HALF_PREC:
-            print("Converting clip_model to float32")
+        
+        if cfg.TRAINER.COOP.PREC == "fp32" or cfg.TRAINER.COOP.PREC == "amp":
+            # CLIP's default precision is fp16
             clip_model.float()
 
         print("Building custom CLIP")
@@ -242,6 +247,10 @@ class CoOp(TrainerX):
         self.sched = build_lr_scheduler(self.optim, cfg.OPTIM)
         self.register_model("prompt_learner", self.model.prompt_learner, self.optim, self.sched)
 
+        self.scaler = GradScaler() if cfg.TRAINER.COOP.PREC == "amp" else None
+
+        # Note that multi-gpu training could be slow because CLIP's size is
+        # big, which slows down the copy operation in DataParallel
         device_count = torch.cuda.device_count()
         if device_count > 1:
             print(f"Multiple GPUs detected (n_gpus={device_count}), use all of them!")
@@ -249,9 +258,20 @@ class CoOp(TrainerX):
 
     def forward_backward(self, batch):
         image, label = self.parse_batch_train(batch)
-        output = self.model(image)
-        loss = F.cross_entropy(output, label)
-        self.model_backward_and_update(loss)
+        
+        prec = self.cfg.TRAINER.COOP.PREC
+        if prec == "amp":
+            with autocast():
+                output = self.model(image)
+                loss = F.cross_entropy(output, label)
+            self.optim.zero_grad()
+            self.scaler.scale(loss).backward()
+            self.scaler.step(self.optim)
+            self.scaler.update()
+        else:
+            output = self.model(image)
+            loss = F.cross_entropy(output, label)
+            self.model_backward_and_update(loss)
 
         loss_summary = {
             "loss": loss.item(),

@@ -90,7 +90,7 @@ def extend_cfg(cfg):
     cfg.TRAINER.COOP.N_CTX = 16  # number of context vectors
     cfg.TRAINER.COOP.CSC = False  # class-specific context
     cfg.TRAINER.COOP.CTX_INIT = ""  # initialization words
-    cfg.TRAINER.COOP.HALF_PREC = True  # float16
+    cfg.TRAINER.COOP.PREC = "fp16"  # fp16, fp32, amp
     cfg.TRAINER.COOP.CLASS_TOKEN_POSITION = "end"  # 'middle' or 'end' or 'front'
 
 
