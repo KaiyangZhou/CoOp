@@ -15,11 +15,6 @@ CSC=$6  # class-specific context (False or True)
 
 for SEED in 1 2 3
 do
-    if [ ${DATASET} == imagenet ]; then
-        TESTMODEL=last_step
-    else
-        TESTMODEL=best_val
-    fi
     DIR=output/${DATASET}/${TRAINER}/${CFG}_${SHOTS}shots/nctx${NCTX}_csc${CSC}_ctp${CTP}/seed${SEED}
     if [ -d "$DIR" ]; then
         echo "Results are available in ${DIR}. Skip this job"
@@ -35,7 +30,6 @@ do
         TRAINER.COOP.N_CTX ${NCTX} \
         TRAINER.COOP.CSC ${CSC} \
         TRAINER.COOP.CLASS_TOKEN_POSITION ${CTP} \
-        TEST.FINAL_MODEL ${TESTMODEL} \
         DATASET.NUM_SHOTS ${SHOTS}
     fi
 done
