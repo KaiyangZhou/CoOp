@@ -1,4 +1,4 @@
-# Prompt Learning Research for Vision-Language Models
+# Research on Prompt Learning for Vision-Language Models
 
 This repo contains the codebase of a series of research projects focused on adapting vision-language models like [CLIP](https://arxiv.org/abs/2103.00020) to downstream datasets via *prompt learning*:
 
