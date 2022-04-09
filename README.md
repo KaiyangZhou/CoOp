@@ -7,6 +7,8 @@ This repo contains the codebase of a series of research projects focused on adap
 
 ## Updates
 
+- **09.04.2022**: The pre-trained weights of CoOp on ImageNet are released [here](#pre-trained-models).
+
 - **11.03.2022**: The code of our CVPR'22 paper, "[Conditional Prompt Learning for Vision-Language Models](https://arxiv.org/abs/2203.05557)," is released.
 
 - **15.10.2021**: We find that the `best_val` model and the `last_step` model achieve similar performance, so we set `TEST.FINAL_MODEL = "last_step"` for all datasets to save training time. Why we used `best_val`: the ([tiny](https://github.com/KaiyangZhou/CoOp/blob/main/datasets/oxford_pets.py#L32)) validation set was designed for the linear probe approach, which requires extensive tuning for its hyperparameters, so we used the `best_val` model for CoOp as well for fair comparison (in this way, both approaches have access to the validation set).
@@ -28,6 +30,10 @@ Click a paper below to see the detailed instructions on how to run the code to r
 
 * [Learning to Prompt for Vision-Language Models](COOP.md)
 * [Conditional Prompt Learning for Vision-Language Models](COCOOP.md)
+
+## Pre-trained Models
+
+The pre-trained weights of CoOp (both M=16 & M=4) on ImageNet based on RN50, RN101, ViT-B/16 and ViT-B/32 can be downloaded altogether via this [link](https://drive.google.com/file/d/18ypxfd82RR0pizc5MM1ZWDYDk4j0BtPF/view?usp=sharing). The weights can be used to reproduce the results in Table 1 of CoOp's paper (i.e., the results on ImageNet and its four variants with domain shift). To load the weights and run the evaluation code, you will need to specify `--model-dir` and `--load-epoch` (see this [script](https://github.com/KaiyangZhou/CoOp/blob/main/scripts/eval.sh) for example).
 
 ## Citation
 If you use this code in your research, please kindly cite the following papers
