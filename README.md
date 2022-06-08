@@ -7,6 +7,8 @@ This repo contains the codebase of a series of research projects focused on adap
 
 ## Updates
 
+- **08.06.2022**: If you're looking for the code to draw the few-shot performance curves (like the ones we show in the CoOp's paper), see `draw_curves.py`.
+
 - **09.04.2022**: The pre-trained weights of CoOp on ImageNet are released [here](#pre-trained-models).
 
 - **11.03.2022**: The code of our CVPR'22 paper, "[Conditional Prompt Learning for Vision-Language Models](https://arxiv.org/abs/2203.05557)," is released.
