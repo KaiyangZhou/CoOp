@@ -7,6 +7,8 @@ This repo contains the codebase of a series of research projects focused on adap
 
 ## Updates
 
+- **10.06.2022**: Our latest work, [Neural Prompt Search](https://arxiv.org/abs/2206.04673), has just been released on arxiv. It provides a novel perspective for fine-tuning large vision models like [ViT](https://arxiv.org/abs/2010.11929), so please check it out if you're interested in parameter-efficient fine-tuning/transfer learning. The code is also made public [here](https://github.com/Davidzhangyuanhan/NOAH).
+
 - **08.06.2022**: If you're looking for the code to draw the few-shot performance curves (like the ones we show in the CoOp's paper), see `draw_curves.py`.
 
 - **09.04.2022**: The pre-trained weights of CoOp on ImageNet are released [here](#pre-trained-models).
