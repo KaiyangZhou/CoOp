@@ -6,7 +6,7 @@ The running scripts are provided in `scripts/cocoop/`. Make sure you change the 
 
 This corresponds to the experiments in Section 4.1, i.e., Table 1.
 
-You will need both `scripts/cocoop/base2new_train.sh` and `scripts/cocoop/base2new_test.sh`. The former trains a model on base classes while the latter evaluates the trained model on new classes. Both scripts have two input arguments, i.e., `DATASET` and `SEED`.
+You will need both `scripts/cocoop/base2new_train.sh` and `scripts/cocoop/base2new_test.sh`. The former trains a model on bash classes while the latter evaluates the trained model on new classes. Both scripts have two input arguments, i.e., `DATASET` and `SEED`.
 
 `DATASET` takes as input a dataset name, like `imagenet` or `caltech101`. The valid names are the files' names in `CoOp/configs/datasets/`.
 
@@ -14,16 +14,16 @@ Below we provide an example on how to evaluate the model on ImageNet.
 
 ```bash
 # seed=1
-base base2new_train.sh imagenet 1
-base base2new_test.sh imagenet 1
+bash base2new_train.sh imagenet 1
+bash base2new_test.sh imagenet 1
 
 # seed=2
-base base2new_train.sh imagenet 2
-base base2new_test.sh imagenet 2
+bash base2new_train.sh imagenet 2
+bash base2new_test.sh imagenet 2
 
 # seed=3
-base base2new_train.sh imagenet 3
-base base2new_test.sh imagenet 3
+bash base2new_train.sh imagenet 3
+bash base2new_test.sh imagenet 3
 ```
 
 When the evaluation is done, you can use `parse_test_res.py` to automatically calculate the average results. For instance, after you finish the evaluation (including `base2new_train.sh` and `base2new_test.sh`) on ImageNet using the aforementioned commands, you would get
@@ -69,13 +69,13 @@ The relevant scripts are `scripts/cocoop/xd_train.sh` and `scripts/cocoop/xd_tes
 
 ```bash
 # seed=1
-base xd_train.sh 1
+bash xd_train.sh 1
 
 # seed=2
-base xd_train.sh 2
+bash xd_train.sh 2
 
 # seed=3
-base xd_train.sh 3
+bash xd_train.sh 3
 ```
 
 Then, you evaluate the model on other datasets, e.g.,
@@ -83,9 +83,9 @@ Then, you evaluate the model on other datasets, e.g.,
 ```bash
 for SEED in 1 2 3
 do
-    base xd_test.sh caltech101 ${SEED}
-    base xd_test.sh oxford_pets ${SEED}
-    base xd_test.sh stanford_cars ${SEED}
+    bash xd_test.sh caltech101 ${SEED}
+    bash xd_test.sh oxford_pets ${SEED}
+    bash xd_test.sh stanford_cars ${SEED}
 done
 ```
 
