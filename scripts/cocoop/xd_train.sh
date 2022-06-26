@@ -15,10 +15,8 @@ SHOTS=16
 
 DIR=output/${DATASET}/${TRAINER}/${CFG}_${SHOTS}shots/seed${SEED}
 if [ -d "$DIR" ]; then
-    echo "Results are available in ${DIR}. Skip this job"
+    echo "Oops! The results exist at ${DIR} (so skip this job)"
 else
-    echo "Run this job and save the output to ${DIR}"
-
     python train.py \
     --root ${DATA} \
     --seed ${SEED} \

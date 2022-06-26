@@ -19,10 +19,8 @@ COMMON_DIR=${DATASET}/shots_${SHOTS}/${TRAINER}/${CFG}/seed${SEED}
 MODEL_DIR=output/base2new/train_base/${COMMON_DIR}
 DIR=output/base2new/test_${SUB}/${COMMON_DIR}
 if [ -d "$DIR" ]; then
-    echo "Results are available in ${DIR}. Skip this job"
+    echo "Oops! The results exist at ${DIR} (so skip this job)"
 else
-    echo "Run this job and save the output to ${DIR}"
-
     python train.py \
     --root ${DATA} \
     --seed ${SEED} \
