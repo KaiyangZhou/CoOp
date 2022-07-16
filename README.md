@@ -7,6 +7,8 @@ This repo contains the codebase of a series of research projects focused on adap
 
 ## Updates
 
+- **16.07.2022**: CoOp has been accepted to IJCV for publication!
+
 - **10.06.2022**: Our latest work, [Neural Prompt Search](https://arxiv.org/abs/2206.04673), has just been released on arxiv. It provides a novel perspective for fine-tuning large vision models like [ViT](https://arxiv.org/abs/2010.11929), so please check it out if you're interested in parameter-efficient fine-tuning/transfer learning. The code is also made public [here](https://github.com/Davidzhangyuanhan/NOAH).
 
 - **08.06.2022**: If you're looking for the code to draw the few-shot performance curves (like the ones we show in the CoOp's paper), see `draw_curves.py`.
@@ -45,14 +47,14 @@ If you use this code in your research, please kindly cite the following papers
 @inproceedings{zhou2022cocoop,
     title={Conditional Prompt Learning for Vision-Language Models},
     author={Zhou, Kaiyang and Yang, Jingkang and Loy, Chen Change and Liu, Ziwei},
-    booktitle={CVPR},
+    booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
     year={2022}
 }
 
-@article{zhou2021coop,
+@article{zhou2022coop,
     title={Learning to Prompt for Vision-Language Models},
     author={Zhou, Kaiyang and Yang, Jingkang and Loy, Chen Change and Liu, Ziwei},
-    journal={arXiv preprint arXiv:2109.01134},
-    year={2021}
+    journal={International Journal of Computer Vision (IJCV)},
+    year={2022}
 }
 ```
