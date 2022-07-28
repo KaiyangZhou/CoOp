@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ..
-
 # custom config
 DATA=/path/to/datasets
 TRAINER=ZeroshotCLIP

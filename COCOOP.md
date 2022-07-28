@@ -1,6 +1,8 @@
 ## How to Run
 
-The running scripts are provided in `scripts/cocoop/`. Make sure you change the path in `DATA` and run the commands under `CoOp/scripts/cocoop/`.
+The running scripts are provided in `scripts/cocoop/`, which allow you to reproduce the results on the CVPR'22 paper.
+
+Make sure you change the path in `DATA` and run the commands under the main directory `CoOp/`.
 
 ### Generalization From Base to New Classes
 
@@ -14,16 +16,16 @@ Below we provide an example on how to evaluate the model on ImageNet.
 
 ```bash
 # seed=1
-bash base2new_train.sh imagenet 1
-bash base2new_test.sh imagenet 1
+bash scripts/cocoop/base2new_train.sh imagenet 1
+bash scripts/cocoop/base2new_test.sh imagenet 1
 
 # seed=2
-bash base2new_train.sh imagenet 2
-bash base2new_test.sh imagenet 2
+bash scripts/cocoop/base2new_train.sh imagenet 2
+bash scripts/cocoop/base2new_test.sh imagenet 2
 
 # seed=3
-bash base2new_train.sh imagenet 3
-bash base2new_test.sh imagenet 3
+bash scripts/cocoop/base2new_train.sh imagenet 3
+bash scripts/cocoop/base2new_test.sh imagenet 3
 ```
 
 When the evaluation is done, you can use `parse_test_res.py` to automatically calculate the average results. For instance, after you finish the evaluation (including `base2new_train.sh` and `base2new_test.sh`) on ImageNet using the aforementioned commands, you would get
@@ -69,13 +71,13 @@ The relevant scripts are `scripts/cocoop/xd_train.sh` and `scripts/cocoop/xd_tes
 
 ```bash
 # seed=1
-bash xd_train.sh 1
+bash scripts/cocoop/xd_train.sh 1
 
 # seed=2
-bash xd_train.sh 2
+bash scripts/cocoop/xd_train.sh 2
 
 # seed=3
-bash xd_train.sh 3
+bash scripts/cocoop/xd_train.sh 3
 ```
 
 Then, you evaluate the model on other datasets, e.g.,
@@ -83,9 +85,9 @@ Then, you evaluate the model on other datasets, e.g.,
 ```bash
 for SEED in 1 2 3
 do
-    bash xd_test.sh caltech101 ${SEED}
-    bash xd_test.sh oxford_pets ${SEED}
-    bash xd_test.sh stanford_cars ${SEED}
+    bash scripts/cocoop/xd_test.sh caltech101 ${SEED}
+    bash scripts/cocoop/xd_test.sh oxford_pets ${SEED}
+    bash scripts/cocoop/xd_test.sh stanford_cars ${SEED}
 done
 ```
 
