@@ -3,7 +3,7 @@
 This repo contains the codebase of a series of research projects focused on adapting vision-language models like [CLIP](https://arxiv.org/abs/2103.00020) to downstream datasets via *prompt learning*:
 
 * [Conditional Prompt Learning for Vision-Language Models](https://arxiv.org/abs/2203.05557), in CVPR, 2022.
-* [Learning to Prompt for Vision-Language Models](https://arxiv.org/abs/2109.01134), arXiv, 2021.
+* [Learning to Prompt for Vision-Language Models](https://arxiv.org/abs/2109.01134), IJCV, 2022.
 
 ## Updates
 
