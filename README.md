@@ -7,6 +7,8 @@ This repo contains the codebase of a series of research projects focused on adap
 
 ## Updates
 
+- **17.09.2022**: [Call for Papers](https://kaiyangzhou.github.io/assets/cfp_ijcv_lvms.html): IJCV Special Issue on *The Promises and Dangers of Large Vision Models*.
+
 - **16.07.2022**: CoOp has been accepted to IJCV for publication!
 
 - **10.06.2022**: Our latest work, [Neural Prompt Search](https://arxiv.org/abs/2206.04673), has just been released on arxiv. It provides a novel perspective for fine-tuning large vision models like [ViT](https://arxiv.org/abs/2010.11929), so please check it out if you're interested in parameter-efficient fine-tuning/transfer learning. The code is also made public [here](https://github.com/Davidzhangyuanhan/NOAH).
