@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../..
+# cd ../..
 
 # custom config
 DATA=/path/to/datasets
